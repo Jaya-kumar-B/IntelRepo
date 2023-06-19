@@ -1,3 +1,10 @@
+!pip install mkl
+import os
+os.environ['MKL_THREADING_LAYER'] = 'GNU'
+import tensorflow as tf
+print(tf.config.threading.get_intra_op_parallelism_threads())
+
+
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
@@ -17,7 +24,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-
+from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPool2D, Input, Dropout, BatchNormalization
 from tensorflow.keras.utils import to_categorical
@@ -25,7 +32,7 @@ from tensorflow import random
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import EarlyStopping,ReduceLROnPlateau
 
-random.set_seed(44)
+#random.set_seed(44)
 fashion = ['T-shirt/top',' Trouser','Pullover','Dress','Coat','Sandal','Shirt','Sneaker','Bag','Ankle Boot']
 data = pd.read_csv('/content/fashion-mnist_test.csv')
 data
